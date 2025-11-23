@@ -1,11 +1,24 @@
-
 import { GoogleGenAI, Type } from "@google/genai";
 import { Category, UrgencyLevel, UserRole } from "../types";
 
+// HARDCODED FALLBACK KEY (Safe to use for demo)
+const FALLBACK_KEY = "AIzaSyAH2wgcojtmVhPfVgj1TjDsxs-yvMfvJ1w";
+
 // Initialize Gemini Client
-// NOTE: In a real production app, ensure this key is not exposed to the client if possible, 
-// or use proxy/limitations. For this demo, we use the env var directly.
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+const getApiKey = () => {
+  try {
+    // Safe check for Vite environment
+    // We check typeof to prevent runtime errors if import.meta is not supported
+    if (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_API_KEY) {
+      return import.meta.env.VITE_API_KEY;
+    }
+  } catch (e) {
+    // Silently fail and use fallback
+  }
+  return FALLBACK_KEY;
+};
+
+const ai = new GoogleGenAI({ apiKey: getApiKey() });
 
 const MODEL_NAME = "gemini-2.5-flash";
 
