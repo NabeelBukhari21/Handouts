@@ -1,3 +1,4 @@
+
 import { GoogleGenAI, Type } from "@google/genai";
 import { Category, UrgencyLevel, UserRole } from "../types";
 
@@ -192,15 +193,24 @@ export const getProfileInsights = async (
 export const optimizeDescription = async (text: string, type: 'NEED' | 'OFFER'): Promise<string> => {
   try {
     const prompt = type === 'NEED' 
-      ? `Rewrite this request to be polite, clear, and empathetic (approx 2 sentences): "${text}"`
-      : `Rewrite this donation offer to be friendly, clear, and inviting (approx 2 sentences): "${text}"`;
+      ? `Act as an expert copywriter. Rewrite the following social aid request to be polite, clear, empathetic, and concise (max 2 sentences). Return ONLY the rewritten text. Do not include quotes, preambles, or conversational filler like "Here is the rewritten text". Input: "${text}"`
+      : `Act as an expert copywriter. Rewrite the following donation offer to be friendly, clear, inviting, and concise (max 2 sentences). Return ONLY the rewritten text. Do not include quotes, preambles, or conversational filler like "Here is the rewritten text". Input: "${text}"`;
 
     const response = await ai.models.generateContent({
       model: MODEL_NAME,
       contents: prompt,
     });
-    return response.text?.trim() || text;
+    
+    let result = response.text?.trim() || text;
+    
+    // Clean up potential quotes if the model adds them
+    if (result.startsWith('"') && result.endsWith('"')) {
+        result = result.slice(1, -1);
+    }
+    
+    return result;
   } catch (e) {
+    console.error("AI Optimization Error:", e);
     return text;
   }
 };

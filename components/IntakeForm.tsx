@@ -81,12 +81,17 @@ const IntakeForm: React.FC<IntakeFormProps> = ({ onAddRequest, setView }) => {
 
   // --- HELPERS ---
   const handleOptimize = async () => {
-    if (!description) return;
+    if (!description || isOptimizing) return;
     playPopSound();
     setIsOptimizing(true);
-    const improved = await optimizeDescription(description, mode || 'NEED');
-    setDescription(improved);
-    setIsOptimizing(false);
+    try {
+        const improved = await optimizeDescription(description, mode || 'NEED');
+        setDescription(improved);
+    } catch (e) {
+        console.error(e);
+    } finally {
+        setIsOptimizing(false);
+    }
   };
 
   const handleSubmit = () => {
@@ -295,7 +300,8 @@ const IntakeForm: React.FC<IntakeFormProps> = ({ onAddRequest, setView }) => {
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                         placeholder={mode === 'NEED' ? "e.g., I'm a single mom and need winter jackets for my 2 kids..." : "e.g., I have 2 gently used winter coats and a bag of canned beans..."}
-                        className="w-full h-32 bg-slate-900/50 border border-white/10 rounded-2xl p-4 text-white placeholder-slate-600 focus:outline-none focus:border-white/30 resize-none transition-all"
+                        disabled={isOptimizing}
+                        className={`w-full h-32 bg-slate-900/50 border rounded-2xl p-4 text-white placeholder-slate-600 focus:outline-none focus:border-white/30 resize-none transition-all ${isOptimizing ? 'opacity-50 border-emerald-500 animate-pulse cursor-wait' : 'border-white/10'}`}
                     />
                     
                     {/* AI Button */}
@@ -306,10 +312,10 @@ const IntakeForm: React.FC<IntakeFormProps> = ({ onAddRequest, setView }) => {
                             mode === 'NEED' 
                             ? 'bg-orange-500/20 text-orange-400 hover:bg-orange-500/30' 
                             : 'bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30'
-                        }`}
+                        } disabled:opacity-50 disabled:cursor-not-allowed`}
                     >
                         {isOptimizing ? <Loader2 className="w-3 h-3 animate-spin" /> : <Wand2 className="w-3 h-3" />}
-                        Let AI Write It
+                        {isOptimizing ? 'Writing...' : 'Let AI Write It'}
                     </button>
                 </div>
                 
