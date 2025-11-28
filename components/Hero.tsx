@@ -1,9 +1,9 @@
 
 import React from 'react';
 import { ViewState, User } from '../types';
-import { 
-  ArrowRight, Sparkles, Activity, ShieldCheck, Users, Heart, Gift, 
-  Rocket, Search, HandHeart, RefreshCw, Zap, CheckCircle2 
+import {
+  Sparkles, Activity, ShieldCheck, Users,
+  Rocket, Search, HandHeart, RefreshCw, Zap, CheckCircle2
 } from 'lucide-react';
 
 interface HeroProps {
@@ -48,20 +48,19 @@ const Hero: React.FC<HeroProps> = ({ setView, user }) => {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8 backdrop-blur-md animate-fade-in-up hover:bg-white/10 transition-colors cursor-default">
             <Sparkles className="w-4 h-4 text-emerald-400 animate-spin-slow" />
-            <span className="text-sm font-medium text-slate-300">Powered by Gemini AI 2.5</span>
+            <span className="text-sm font-medium text-slate-300">Enterprise-grade coordination with Gemini AI</span>
           </div>
 
           {/* Headline */}
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-            Connecting Communities <br />
+            Human-centered relief <br />
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 text-neon">
-              One Handout at a Time
+              built for professional teams
             </span>
           </h1>
 
           <p className="mt-4 max-w-2xl mx-auto text-xl text-slate-400 mb-10 leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-            The AI-powered platform that instantly matches surplus with scarcity. 
-            Help your neighbors with essential items through intelligent distribution.
+            A polished operating layer for city programs, nonprofits, and community responders. Handouts delivers trustworthy matching, structured data, and compassionate journeys—without the manual overhead.
           </p>
 
           {/* Fun Buttons */}
@@ -72,37 +71,54 @@ const Hero: React.FC<HeroProps> = ({ setView, user }) => {
               onClick={handlePrimaryAction}
               className="group relative px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-900 font-bold rounded-2xl transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.5)] flex items-center justify-center gap-3 hover:scale-105 active:scale-95"
             >
-              <span className="text-lg">{user ? 'Browse Marketplace' : 'Get Started'}</span>
+              <span className="text-lg">{user ? 'Browse Marketplace' : 'Launch Handouts'}</span>
               <Rocket className="w-5 h-5 group-hover:animate-bounce-subtle" />
             </button>
-            
+
             {/* Secondary Action */}
-            <button 
+            <button
               onClick={handleSecondaryAction}
               className="group relative px-8 py-4 bg-slate-800/50 hover:bg-slate-800 text-white font-semibold rounded-2xl border border-white/10 transition-all flex items-center justify-center gap-2 hover:border-emerald-500/50 hover:shadow-[0_0_15px_rgba(16,185,129,0.15)]"
             >
-              {user ? 'View Insights' : 'Log In'}
+              {user ? 'View Insights' : 'See Dashboard'}
               <Activity className="w-5 h-5 text-emerald-400 group-hover:animate-pulse" />
             </button>
+          </div>
+
+          {/* Credibility */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-5xl mx-auto text-left animate-fade-in-up" style={{ animationDelay: '0.35s' }}>
+            {[ 
+              { label: 'Coordinated handoffs', metric: '1,200+', meta: 'completed with zero safety incidents' },
+              { label: 'Service-level uptime', metric: '99.9%', meta: 'cloud monitored & resilient' },
+              { label: 'Avg. response time', metric: '< 3 min', meta: 'from intake to suggested match' },
+            ].map((stat, idx) => (
+              <div key={idx} className="glass-card rounded-2xl px-5 py-4 border border-white/5 hover:border-emerald-500/30 transition-colors">
+                <p className="text-sm uppercase tracking-[0.2em] text-slate-400 mb-2">{stat.label}</p>
+                <div className="flex items-end gap-2">
+                  <span className="text-3xl font-black text-white">{stat.metric}</span>
+                  <span className="text-xs text-emerald-300/90">{stat.meta}</span>
+                </div>
+              </div>
+            ))}
           </div>
 
           {/* Feature Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left max-w-5xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
             {[
-              { 
-                icon: Sparkles, 
-                title: "AI Intelligent Intake", 
-                desc: "Our Gemini AI parses urgency, category, and location instantly from your natural language requests." 
+              {
+                icon: Sparkles,
+                title: "Structured AI intake",
+                desc: "Gemini translates natural language into clean, prioritized cases—ready for dispatch or reporting."
               },
-              { 
-                icon: ShieldCheck, 
-                title: "Verified Matching", 
-                desc: "Smart algorithms ensure goods go to those who need them most, minimizing waste and ensuring safety." 
+              {
+                icon: ShieldCheck,
+                title: "Safety-first matching",
+                desc: "Eligibility, urgency, and proximity are balanced automatically so the right people get help first."
               },
-              { 
-                icon: Users, 
-                title: "Hyper-Local", 
-                desc: "Connect with neighbors within 5km of your doorstep. Reduce carbon footprint while building community." 
+              {
+                icon: Users,
+                title: "Operational clarity",
+                desc: "Keep teams aligned with crisp statuses, location confidence, and next-best-actions in one workspace."
               }
             ].map((feature, idx) => (
               <div key={idx} className="glass-card p-8 rounded-3xl hover:-translate-y-2 transition-transform duration-300 border border-white/5 hover:border-emerald-500/30 group">
@@ -125,17 +141,17 @@ const Hero: React.FC<HeroProps> = ({ setView, user }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
                 <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">How Handouts Works</h2>
-                <p className="text-slate-400 max-w-2xl mx-auto">Three simple steps to making a difference in your local community.</p>
+                <p className="text-slate-400 max-w-2xl mx-auto">A clear, accountable flow from intake to handoff so every exchange stays safe and human.</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
                 {/* Connecting Line (Desktop) */}
                 <div className="hidden md:block absolute top-12 left-0 w-full h-0.5 bg-gradient-to-r from-emerald-500/0 via-emerald-500/50 to-emerald-500/0"></div>
 
-                {[
-                    { icon: Search, title: "1. Post a Need or Offer", desc: "Describe what you have or what you need. Our AI categorizes it instantly." },
-                    { icon: Zap, title: "2. Get Matched", desc: "Our engine finds the closest, most relevant match nearby." },
-                    { icon: HandHeart, title: "3. Connect & Exchange", desc: "Chat securely and arrange a safe exchange to help your neighbor." }
+                {[ 
+                    { icon: Search, title: "1. Capture the story", desc: "Describe the situation in plain language. Intake is structured automatically for your team." },
+                    { icon: Zap, title: "2. Confirm the match", desc: "See vetted recommendations with distance, urgency, and fit so you can approve quickly." },
+                    { icon: HandHeart, title: "3. Close the loop", desc: "Message safely, coordinate handoffs, and keep stakeholders informed with status updates." }
                 ].map((step, i) => (
                     <div key={i} className="relative flex flex-col items-center text-center z-10">
                         <div className="w-24 h-24 bg-slate-900 rounded-full border-4 border-emerald-500/20 flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(16,185,129,0.2)]">
@@ -158,7 +174,7 @@ const Hero: React.FC<HeroProps> = ({ setView, user }) => {
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Join the Movement</h2>
               <p className="text-xl text-slate-300 mb-10">
-                  Thousands of items have already been redistributed. Join us in reducing waste and helping families.
+                  Purpose-driven teams already rely on Handouts to reduce waste, increase equity, and keep every exchange accountable.
               </p>
               
               <div className="flex flex-wrap justify-center gap-8 mb-12">

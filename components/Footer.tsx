@@ -12,17 +12,26 @@ const Footer: React.FC = () => {
                <span className="font-bold text-xl text-white">Hand<span className="text-emerald-400">outs</span></span>
             </div>
             <p className="text-slate-400 text-sm max-w-sm leading-relaxed">
-              Empowering communities to bridge the gap between surplus and scarcity using advanced AI matching.
+              The professional coordination layer for surplus redistribution. Built for teams that value care, compliance, and clarity at every step.
             </p>
           </div>
-          
+
           <div>
             <h4 className="text-white font-semibold mb-4">Platform</h4>
             <ul className="space-y-2 text-sm text-slate-400">
               <li className="hover:text-emerald-400 cursor-pointer transition-colors">Marketplace</li>
-              <li className="hover:text-emerald-400 cursor-pointer transition-colors">Giver Analytics</li>
-              <li className="hover:text-emerald-400 cursor-pointer transition-colors">Success Stories</li>
+              <li className="hover:text-emerald-400 cursor-pointer transition-colors">Impact dashboards</li>
+              <li className="hover:text-emerald-400 cursor-pointer transition-colors">Safety controls</li>
             </ul>
+          </div>
+
+          <div>
+             <h4 className="text-white font-semibold mb-4">Support</h4>
+             <ul className="space-y-2 text-sm text-slate-400">
+                <li className="hover:text-emerald-400 cursor-pointer transition-colors">Implementation guide</li>
+                <li className="hover:text-emerald-400 cursor-pointer transition-colors">Trust & safety</li>
+                <li className="hover:text-emerald-400 cursor-pointer transition-colors">Status page</li>
+             </ul>
           </div>
 
           <div>
@@ -37,7 +46,7 @@ const Footer: React.FC = () => {
 
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500">
           <p>© 2024 Handouts Inc. All rights reserved.</p>
-          <p>Built with React, Tailwind, and Gemini AI.</p>
+          <p>Enterprise-ready. Built with React, Tailwind, and Gemini AI.</p>
         </div>
       </div>
     </footer>

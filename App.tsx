@@ -83,14 +83,16 @@ function App() {
   const showNavbar = !['LOGIN', 'SIGNUP', 'ONBOARDING'].includes(currentView);
 
   return (
-    <div className="bg-slate-900 text-slate-50 min-h-screen flex flex-col font-sans selection:bg-emerald-500/30">
+    <div className="bg-slate-950 text-slate-50 min-h-screen flex flex-col font-sans selection:bg-emerald-500/30">
       {showNavbar && <Navbar currentView={currentView} setView={setView} user={user} onLogout={handleLogout} />}
-      
+
       <main className="flex-grow relative">
         {/* Global Ambient Background Effects - Persistent across views */}
         <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-emerald-900/10 rounded-full blur-[100px] opacity-50"></div>
-            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-cyan-900/10 rounded-full blur-[100px] opacity-50"></div>
+            <div className="absolute top-0 right-0 w-[520px] h-[520px] bg-emerald-900/15 rounded-full blur-[120px] opacity-60"></div>
+            <div className="absolute bottom-0 left-0 w-[540px] h-[540px] bg-cyan-900/15 rounded-full blur-[120px] opacity-60"></div>
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(52,211,153,0.05),transparent_35%),radial-gradient(circle_at_80%_10%,rgba(6,182,212,0.05),transparent_25%)]"></div>
+            <div className="absolute inset-0 bg-[linear-gradient(transparent,_transparent_96%,rgba(255,255,255,0.04)_97%),linear-gradient(90deg,transparent,_transparent_96%,rgba(255,255,255,0.04)_97%)] bg-[length:180px_180px] opacity-40"></div>
         </div>
         
         <div className="relative z-10">
